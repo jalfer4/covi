@@ -1,0 +1,95 @@
+﻿@model Covi.Models.Local
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Eliminar un local
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>¿ Seguro que desea eliminar este local ?</h3>
+                        <div class="form-group">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nombre)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nombre)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Capacidad)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Capacidad)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Direccion)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Direccion)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Telefono)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Telefono)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EstaHabilitado)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.EstaHabilitado)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EstaPublicado)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.EstaPublicado)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TipoLocal)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.TipoLocal.Nombre)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Usuario)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Usuario.Apellido)
+                                </dd>
+                            </dl>
+                        </div>
+
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="LocalId" />
+
+                            <input type="submit" value="Aceptar" class=" btn btn-lg btn-danger" />
+
+                            <input type="submit" value="Cancelar" asp-action="Index" class="btn btn-success btn-lg" />
+                        </form>
+
+
+
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+ 

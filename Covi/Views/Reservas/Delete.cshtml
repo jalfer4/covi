@@ -1,0 +1,77 @@
+﻿@model Covi.Models.Reserva
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                ¡ Eliminar una reserva !
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>¿ Seguro que desea eliminar la reserva ?</h3>
+                        <div class="form-group">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.FechaAlta)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.FechaAlta)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EstaHabilitado)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.EstaHabilitado)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.EstaPublicado)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.EstaPublicado)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Evento)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Evento.NombreArtista)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Usuario)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Usuario.Apellido)
+                                </dd>
+                            </dl>
+                        </div>
+
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="ReservaId" />
+
+                            <input type="submit" value="Aceptar" class=" btn btn-lg btn-danger" />
+
+                            <input type="submit" value="Cancelar" asp-action="Index" class="btn btn-success btn-lg" />
+                        </form>
+
+
+
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+ 

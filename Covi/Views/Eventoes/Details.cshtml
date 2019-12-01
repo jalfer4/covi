@@ -1,0 +1,55 @@
+﻿@model Covi.Models.Evento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Evento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LocalId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocalId)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaAlta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaAlta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreArtista)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NombreArtista)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaHabilitado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstaHabilitado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaPublicado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstaPublicado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEventoNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoEventoNavigation.Nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EventoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

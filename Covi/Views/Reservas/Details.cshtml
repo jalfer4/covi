@@ -1,0 +1,48 @@
+﻿@model Covi.Models.Reserva
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaAlta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaAlta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaHabilitado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstaHabilitado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaPublicado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstaPublicado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evento.NombreArtista)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Apellido)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ReservaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

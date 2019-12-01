@@ -1,0 +1,66 @@
+﻿@model Covi.Models.Local
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Local</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Capacidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaHabilitado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstaHabilitado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaPublicado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstaPublicado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoLocal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoLocal.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Apellido)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LocalId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
