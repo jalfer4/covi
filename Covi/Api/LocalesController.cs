@@ -46,32 +46,7 @@ namespace Covi.Api
 
             return local;
         }
-
-
-
-        // GET: api/Locales/GetLocalCompleto/2
-        [HttpGet("GetLocalCompleto/{id}")]
-        public async Task<ActionResult<Object>> GetLocalCompleto(int id)
-        {
-            var returnResults = new List<Object>();
-
-            var locales =  _context.Local;
-           
-            foreach (var dato in locales)
-            {
-
-                dato.Evento.Add(_context.Evento.FirstOrDefault());
-                returnResults.Add(dato);
-            }
-               
-
-           
-
-            return returnResults;
-        }
-
-
-
+         
 
         // PUT: api/Locales/5
         [HttpPut("{id}")]

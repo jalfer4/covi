@@ -30,6 +30,13 @@ namespace Covi.Api
             return await _context.Reserva.ToListAsync();
         }
 
+        // GET: api/GetMisReserva/1
+        [HttpGet("GetMisReserva/{id}")]
+        public async Task<ActionResult<IEnumerable<Reserva>>> GetMisReserva(int id)
+        {
+            return await _context.Reserva.Where(obj => obj.UsuarioId == id).ToListAsync();
+        }
+
         // GET: api/Reservas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Reserva>> GetReserva(int id)
