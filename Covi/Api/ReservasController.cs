@@ -32,9 +32,16 @@ namespace Covi.Api
 
         // GET: api/GetMisReserva/1
         [HttpGet("GetMisReserva/{id}")]
-        public async Task<ActionResult<IEnumerable<Reserva>>> GetMisReserva(int id)
+        public async Task<ActionResult<IEnumerable<Object>>> GetMisReserva(int id)
         {
-            return await _context.Reserva.Where(obj => obj.UsuarioId == id).ToListAsync();
+
+            var reservas = from o_Reserva in _context.Reserva
+                          join o_evento in _context.Evento on o_Reserva.EventoId equals o_evento.EventoId
+                          where o_Reserva.UsuarioId == id
+                          select new {o_Reserva.ReservaId, o_Reserva.UsuarioId, fechaReserva = o_Reserva.FechaAlta, o_evento.EventoId, o_Reserva.EstaHabilitado, o_Reserva.EstaPublicado, o_evento.NombreArtista, FechaEvento = o_evento.FechaAlta, o_evento.TipoEventoNavigation.Nombre} ;
+
+            //return await _context.Reserva.Where(obj => obj.UsuarioId == id).ToListAsync();
+            return reservas.ToList();
         }
 
         // GET: api/Reservas/5
