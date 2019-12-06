@@ -119,9 +119,9 @@ namespace Covi.Api
         {
             return _context.Usuario.Any(e => e.UsuarioId == id);
         }
-         
 
-        // GET api/<controller>/5
+
+        // GET api/usuarios/login/
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginView loginView)
@@ -167,7 +167,7 @@ namespace Covi.Api
         }
 
 
-        // GET: api/Usuarios/5
+        // GET: api/Usuarios/GetUsuarioByEmail/5
         [HttpGet("GetUsuarioByEmail/{id}")]
         public async Task<ActionResult<Usuario>> GetUsuarioByEmail(String id)
         {
@@ -230,5 +230,35 @@ namespace Covi.Api
             return true;
         }
 
+        [HttpPost("validarUsuario")]
+        [AllowAnonymous]
+        public async Task<ActionResult<Usuario>> validarUsuario(LoginView loginView)
+        {
+            try
+            {
+                string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                    password: loginView.Clave,
+                    salt: System.Text.Encoding.ASCII.GetBytes(config["Salt"]),
+                    prf: KeyDerivationPrf.HMACSHA1,
+                    iterationCount: 1000,
+                    numBytesRequested: 256 / 8));
+                var p = _context.Usuario.FirstOrDefault(x => x.Email == loginView.Email);
+                if (p == null || p.Clave != hashed)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var usuario = await _context.Usuario.FindAsync(p.UsuarioId);
+  
+                    return usuario;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Covi.Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reserva>>> GetReserva()
         {
-            return await _context.Reserva.ToListAsync();
+            return await _context.Reserva.Where(obj => obj.EstaHabilitado == true && obj.EstaPublicado == true).ToListAsync();
         }
 
         // GET: api/GetMisReserva/1
@@ -37,7 +37,7 @@ namespace Covi.Api
 
             var reservas = from o_Reserva in _context.Reserva
                           join o_evento in _context.Evento on o_Reserva.EventoId equals o_evento.EventoId
-                          where o_Reserva.UsuarioId == id
+                          where o_Reserva.UsuarioId == id && o_Reserva.EstaHabilitado == true &&  o_Reserva.EstaPublicado == true
                           select new {o_Reserva.ReservaId, o_Reserva.UsuarioId, fechaReserva = o_Reserva.FechaAlta, o_evento.EventoId, o_Reserva.EstaHabilitado, o_Reserva.EstaPublicado, o_evento.NombreArtista, FechaEvento = o_evento.FechaAlta, o_evento.TipoEventoNavigation.Nombre} ;
 
             //return await _context.Reserva.Where(obj => obj.UsuarioId == id).ToListAsync();
@@ -88,6 +88,42 @@ namespace Covi.Api
             return NoContent();
         }
 
+        // PUT: api/Reservas/5
+        [HttpPut("PutBajaLogica/{id}")]
+        public async Task<IActionResult> PutBajaLogica(int id)
+        {
+
+            var reserva = await _context.Reserva.FindAsync(id);
+
+            if (id != reserva.ReservaId)
+            {
+                return BadRequest();
+            }
+
+            reserva.EstaHabilitado = false;
+            reserva.EstaPublicado = false;
+
+            _context.Entry(reserva).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ReservaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         // POST: api/Reservas
         [HttpPost]
         public async Task<ActionResult<Reserva>> PostReserva(Reserva reserva)
@@ -116,7 +152,7 @@ namespace Covi.Api
 
         private bool ReservaExists(int id)
         {
-            return _context.Reserva.Any(e => e.ReservaId == id);
+            return _context.Reserva.Any(e => e.ReservaId == id && e.EstaHabilitado == true && e.EstaPublicado == true);
         }
     }
 }
